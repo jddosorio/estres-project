@@ -1,0 +1,2 @@
+"""PROTEGE dashboard support package."""
+
