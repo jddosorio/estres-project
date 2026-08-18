@@ -116,7 +116,19 @@ if not tables:
     st.stop()
 
 st.sidebar.header("Datos")
-selected_table = st.sidebar.selectbox("Tabla", tables)
+default_table = "environmental_telemetry"
+
+default_index = (
+    table_names.index(default_table)
+    if default_table in table_names
+    else 0
+)
+
+selected_table = st.selectbox(
+    "Tabla",
+    options=table_names,
+    index=default_index,
+)
 row_limit = st.sidebar.select_slider(
     "Máximo de registros",
     options=[100, 500, 1000, 5000, 10000, 50000],
