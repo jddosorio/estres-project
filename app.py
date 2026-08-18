@@ -118,15 +118,11 @@ if not tables:
 st.sidebar.header("Datos")
 default_table = "environmental_telemetry"
 
-default_index = (
-    table_names.index(default_table)
-    if default_table in table_names
-    else 0
-)
+default_index = tables.index(default_table) if default_table in tables else 0
 
-selected_table = st.selectbox(
+selected_table = st.sidebar.selectbox(
     "Tabla",
-    options=table_names,
+    options=tables,
     index=default_index,
 )
 row_limit = st.sidebar.select_slider(
@@ -236,4 +232,3 @@ with data_tab:
 with schema_tab:
     st.code(f"{configured_database()}.{selected_table}")
     st.dataframe(schema, use_container_width=True, hide_index=True)
-
