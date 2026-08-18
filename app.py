@@ -25,6 +25,41 @@ st.set_page_config(
 st.title("PROTEGE Environmental Monitoring")
 st.caption("Dashboard local conectado mediante HTTPS a ClickHouse Cloud")
 
+with st.container(height=330, border=True):
+    st.subheader("Propósito de esta validación")
+
+    st.markdown(
+        """
+        Esta página forma parte del procedimiento de maduración tecnológica
+        de **PROTEGE desde TRL-4 a TRL-5**. Su propósito es demostrar, en un
+        ambiente controlado, la capacidad de la infraestructura para adquirir
+        mediciones desde un **sensor real de temperatura y humedad**, transmitirlas
+        periódicamente mediante la red **NB-IoT/LTE de Entel**, almacenarlas en
+        **ClickHouse Cloud** y visualizarlas remotamente mediante un dashboard
+        desplegado en **Streamlit Community Cloud**.
+
+        El sistema genera un registro aproximadamente **cada minuto**, permitiendo
+        verificar la operación extremo a extremo de la cadena tecnológica:
+
+        **Sensor ambiental → controlador LTE (gateway) → red NB-IoT/LTE →
+        HTTPS/TLS → ClickHouse Cloud → dashboard Streamlit Cloud**
+
+        **Aspectos verificados en esta prueba:**
+
+        - Adquisición de datos desde un sensor físico.
+        - Generación periódica de registros ambientales.
+        - Comunicación entre el gateway LTE y la infraestructura en la nube.
+        - Recepción y almacenamiento en ClickHouse Cloud.
+        - Consulta remota y visualización de las mediciones.
+        - Disponibilidad del dashboard para validación por terceros.
+
+        Esta prueba valida la infraestructura de adquisición, comunicación,
+        almacenamiento y visualización de PROTEGE. La estimación de
+        **Time on Tools** y la permanencia por zonas se validan separadamente
+        mediante el **Gemelo Digital PROTEGE** y las pruebas con scanners y
+        tags BLE.
+        """
+    )
 
 def find_first(columns: list[str], candidates: tuple[str, ...]) -> str | None:
     lower_to_original = {column.lower(): column for column in columns}
