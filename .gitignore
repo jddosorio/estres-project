@@ -5,3 +5,5 @@ __pycache__/
 .streamlit/secrets.toml
 .venv-py39/
 .env
+.vscode/
+sample_data/digital_twin_6m/

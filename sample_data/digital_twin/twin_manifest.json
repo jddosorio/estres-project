@@ -1,0 +1,17 @@
+{
+  "run_id": "abcbd7ba-fc78-5b34-bef8-ebb274ff42d2",
+  "model": "PROTEGE Digital Twin - ideal ground truth",
+  "algorithm_version": "digital-twin-ground-truth-v1",
+  "seed": 42,
+  "start_date": "2026-01-05",
+  "calendar_days": 7,
+  "workers": 3,
+  "absence_rate": 0.0,
+  "simulated_shifts": 15,
+  "presence_minutes_per_shift": 540,
+  "lunch_minutes_per_shift": 36,
+  "labor_minutes_per_shift": 504,
+  "labor_hours_per_five_day_week": 42,
+  "timezone": "America/Santiago",
+  "timestamps_stored_as": "UTC"
+}
