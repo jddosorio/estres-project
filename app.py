@@ -22,10 +22,30 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("PROTEGE Environmental Monitoring")
-st.caption("Dashboard local conectado mediante HTTPS a ClickHouse Cloud")
+st.markdown(
+    """
+    <style>
+        /* Reduce el espacio superior de la página */
+        .block-container {
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
 
-with st.container(height=330, border=True):
+        /* Reduce el título principal */
+        h1 {
+            font-size: 2.2rem !important;
+            line-height: 1.15 !important;
+            margin-bottom: 0.25rem !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.title("PROTEGE - Monitoreo Ambiental")
+st.caption("Dashboard en la nube conectado mediante HTTPS a ClickHouse Cloud")
+
+with st.container(height=280, border=True):
     st.subheader("Propósito de esta validación")
 
     st.markdown(
