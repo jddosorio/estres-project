@@ -156,9 +156,20 @@ with dashboard_tab:
             else:
                 latest = data.iloc[-1]
                 col1, col2, col3 = st.columns(3)
-                col1.metric("Temperatura", f"{latest['temperature_c']:.2f} °C")
-                col2.metric("Humedad", f"{latest['humidity_pct']:.2f} %")
-                col3.metric("Registros", f"{len(data):,}")
+
+
+                col1.metric(
+                    "Temperatura",
+                    f"{latest['temperature_c']:.2f}".replace(".", ",") + " °C",
+                )
+                col2.metric(
+                    "Humedad",
+                    f"{latest['humidity_pct']:.2f}".replace(".", ",") + " %",
+                )
+                col3.metric(
+                    "Registros",
+                    f"{len(data):,}".replace(",", "."),
+                )
 
                 temperature_chart = px.line(
                     data,

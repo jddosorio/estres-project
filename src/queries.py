@@ -28,7 +28,12 @@ def qualified_table(table: str) -> str:
 @st.cache_data(ttl=30, show_spinner=False)
 def connection_info() -> pd.DataFrame:
     return get_client().query_df(
-        "SELECT now() AS server_time, currentUser() AS user, version() AS version"
+        """
+        SELECT
+            toTimeZone(now(), 'America/Santiago') AS server_time,
+            currentUser() AS user,
+            version() AS version
+        """
     )
 
 
@@ -80,7 +85,7 @@ def read_environment_data(
 
     query = f"""
         SELECT
-            {x_sql} AS x_value,
+            toTimeZone({x_sql}, 'America/Santiago') AS x_value,
             {temperature_sql} / 1000.0 AS temperature_c,
             {humidity_sql} / 1000.0 AS humidity_pct
         FROM {table_sql}
@@ -89,5 +94,10 @@ def read_environment_data(
         LIMIT {{limit:UInt32}}
     """
     result = get_client().query_df(query, parameters=parameters)
+
+    if pd.api.types.is_datetime64_any_dtype(result["x_value"]):
+        if result["x_value"].dt.tz is not None:
+            result["x_value"] = result["x_value"].dt.tz_localize(None)
+
     return result.sort_values("x_value").reset_index(drop=True)
 
