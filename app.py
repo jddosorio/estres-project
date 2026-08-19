@@ -31,34 +31,72 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-pages = {
-    "Validación TRL-4 → TRL-5": [
-        st.Page(
-            "views/1_Monitoreo_Ambiental.py",
-            title="Monitoreo Ambiental",
-            icon="🌡️",
-            default=True,
-        ),
-        st.Page(
-            "views/2_Gemelo_Digital.py",
-            title="Gemelo Digital",
-            icon="🏗️",
-        ),
-    ],
-    "Análisis y datos": [
-        st.Page(
-            "views/3_Reportes.py",
-            title="Reportes",
-            icon="📄",
-        ),
-        st.Page(
-            "views/4_ClickHouse.py",
-            title="ClickHouse",
-            icon="🗄️",
-        ),
-    ],
-}
+environmental_page = st.Page(
+    "views/1_Monitoreo_Ambiental.py",
+    title="Monitoreo Ambiental",
+    default=True,
+)
+layout_page = st.Page("views/5_Layout.py", title="Layout")
+digital_twin_page = st.Page("views/2_Gemelo_Digital.py", title="Gemelo Digital")
+clickhouse_page = st.Page("views/4_ClickHouse.py", title="Arquitectura ClickHouse")
+scanner_config_page = st.Page(
+    "views/6_Configuracion_Tags_Scanners.py",
+    title="Configuración",
+)
+transit_page = st.Page("views/7_Pruebas_Transito.py", title="Pruebas de Tránsito")
+permanence_page = st.Page(
+    "views/8_Permanencia_Zona.py",
+    title="Permanencia por Zona",
+)
+reports_page = st.Page("views/3_Reportes.py", title="Reportes")
 
-navigation = st.navigation(pages, position="sidebar")
+all_pages = [
+    environmental_page,
+    layout_page,
+    digital_twin_page,
+    clickhouse_page,
+    scanner_config_page,
+    transit_page,
+    permanence_page,
+    reports_page,
+]
+
+navigation = st.navigation(all_pages, position="hidden")
+
+with st.sidebar:
+    st.markdown(
+        """
+        <div style="padding: 0.25rem 0 0.5rem 0;">
+            <div style="font-size: 1.05rem; font-weight: 700;">
+                CORFO INNOVA REGIÓN
+            </div>
+            <div style="margin-top: 0.2rem; font-weight: 600;">PULSOTECH - PROTEGE</div>
+            <div style="color: #667085; margin-top: 0.1rem;">
+                25IRA2-308607E
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.divider()
+    st.caption("VALIDACIÓN EN LÍNEA")
+    st.page_link(environmental_page, label="Monitoreo Ambiental", icon="🌡️")
+
+    st.divider()
+    st.caption("VALIDACIÓN DE BASE DE DATOS")
+    st.page_link(layout_page, label="Layout", icon="🗺️")
+    st.page_link(digital_twin_page, label="Gemelo Digital", icon="🏗️")
+    st.page_link(clickhouse_page, label="Arquitectura ClickHouse", icon="🗄️")
+
+    st.divider()
+    st.caption("VALIDACIÓN DE TAGS Y SCANNERS BLE")
+    st.page_link(scanner_config_page, label="Configuración", icon="📡")
+    st.page_link(transit_page, label="Pruebas de Tránsito", icon="🚶")
+    st.page_link(permanence_page, label="Permanencia por Zona", icon="📍")
+
+    st.divider()
+    st.caption("RESULTADOS")
+    st.page_link(reports_page, label="Reportes", icon="📄")
+
 navigation.run()
-
