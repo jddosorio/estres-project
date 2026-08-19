@@ -31,8 +31,13 @@ def query_df(sql: str, parameters: dict | None = None) -> pd.DataFrame:
     return get_client().query_df(sql, parameters=parameters or {})
 
 
+def format_integer(value: float | int) -> str:
+    """Format an integer using a dot as the thousands separator."""
+    return f"{float(value):,.0f}".replace(",", ".")
+
+
 def format_hours(seconds: float | int) -> str:
-    return f"{float(seconds) / 3600:,.1f} h"
+    return f"{format_integer(float(seconds) / 3600)} h"
 
 
 def where_clause(worker_id: str | None, table_alias: str = "") -> tuple[str, dict]:
@@ -160,7 +165,7 @@ selected_run = runs.loc[runs["run_id"] == selected_run_id].iloc[0]
 st.success(
     f"Ejecución {selected_run_id[:8]} · semilla {int(selected_run['seed'])} · "
     f"{int(selected_run['workers'])} trabajadores · "
-    f"{int(selected_run['simulated_shifts']):,} jornadas simuladas"
+    f"{format_integer(selected_run['simulated_shifts'])} jornadas simuladas"
 )
 
 summary = query_df(
@@ -168,17 +173,25 @@ summary = query_df(
     SELECT
         count() AS worker_days,
         countDistinct(worker_id) AS workers,
-        sum(presence_seconds) AS presence_seconds,
-        sum(labor_seconds) AS labor_seconds,
-        sum(break_seconds) AS break_seconds,
-        sum(productive_seconds) AS productive_seconds,
-        sum(labor_seconds - productive_seconds) AS non_productive_seconds,
-        sum(non_productive_planned_seconds) AS planned_seconds,
-        sum(non_productive_inferred_seconds) AS inferred_seconds,
-        sum(support_seconds) AS support_seconds,
-        sum(undefined_seconds) AS undefined_seconds,
-        round(100 * sum(productive_seconds) / nullIf(sum(labor_seconds), 0), 2)
-            AS time_on_tools_labor_pct
+        sum(presence_seconds) AS total_presence_seconds,
+        sum(labor_seconds) AS total_labor_seconds,
+        sum(break_seconds) AS total_break_seconds,
+        sum(productive_seconds) AS total_productive_seconds,
+        sum(toInt64(labor_seconds)) - sum(toInt64(productive_seconds))
+            AS non_productive_seconds,
+        sum(non_productive_planned_seconds) AS total_planned_seconds,
+        sum(non_productive_inferred_seconds) AS total_inferred_seconds,
+        sum(support_seconds) AS total_support_seconds,
+        sum(undefined_seconds) AS total_undefined_seconds,
+        if(
+            sum(labor_seconds) = 0,
+            0.0,
+            round(
+                100.0 * toFloat64(sum(productive_seconds))
+                / toFloat64(sum(labor_seconds)),
+                2
+            )
+        ) AS time_on_tools_labor_pct
     FROM {TWIN_DATABASE}.twin_daily_kpis
     WHERE {where}
     """,
@@ -187,10 +200,10 @@ summary = query_df(
 
 metric_1, metric_2, metric_3, metric_4, metric_5 = st.columns(5)
 metric_1.metric("Time on Tools", f"{float(summary['time_on_tools_labor_pct']):.2f} %")
-metric_2.metric("Tiempo productivo", format_hours(summary["productive_seconds"]))
+metric_2.metric("Tiempo productivo", format_hours(summary["total_productive_seconds"]))
 metric_3.metric("Tiempo no productivo", format_hours(summary["non_productive_seconds"]))
-metric_4.metric("Permanencia", format_hours(summary["presence_seconds"]))
-metric_5.metric("Jornadas", f"{int(summary['worker_days']):,}")
+metric_4.metric("Permanencia", format_hours(summary["total_presence_seconds"]))
+metric_5.metric("Jornadas", format_integer(summary["worker_days"]))
 
 overview_tab, zones_tab, workers_tab, validation_tab = st.tabs(
     ["Resumen", "Permanencia por zona", "Trabajadores", "Validación"]
@@ -202,10 +215,21 @@ with overview_tab:
         SELECT
             shift_date,
             round(sum(productive_seconds) / 3600, 2) AS productive_hours,
-            round(sum(labor_seconds - productive_seconds) / 3600, 2)
+            round(
+                (sum(toInt64(labor_seconds)) - sum(toInt64(productive_seconds)))
+                / 3600.0,
+                2
+            )
                 AS non_productive_hours,
-            round(100 * sum(productive_seconds) / nullIf(sum(labor_seconds), 0), 2)
-                AS time_on_tools_pct
+            if(
+                sum(labor_seconds) = 0,
+                0.0,
+                round(
+                    100.0 * toFloat64(sum(productive_seconds))
+                    / toFloat64(sum(labor_seconds)),
+                    2
+                )
+            ) AS time_on_tools_pct
         FROM {TWIN_DATABASE}.twin_daily_kpis
         WHERE {where}
         GROUP BY shift_date
@@ -225,12 +249,12 @@ with overview_tab:
                 "Colación",
             ],
             "Horas": [
-                float(summary["productive_seconds"]) / 3600,
-                float(summary["planned_seconds"]) / 3600,
-                float(summary["inferred_seconds"]) / 3600,
-                float(summary["support_seconds"]) / 3600,
-                float(summary["undefined_seconds"]) / 3600,
-                float(summary["break_seconds"]) / 3600,
+                float(summary["total_productive_seconds"]) / 3600,
+                float(summary["total_planned_seconds"]) / 3600,
+                float(summary["total_inferred_seconds"]) / 3600,
+                float(summary["total_support_seconds"]) / 3600,
+                float(summary["total_undefined_seconds"]) / 3600,
+                float(summary["total_break_seconds"]) / 3600,
             ],
         }
     )
@@ -327,10 +351,21 @@ with workers_tab:
             worker_id,
             count() AS simulated_days,
             round(sum(productive_seconds) / 3600, 2) AS productive_hours,
-            round(sum(labor_seconds - productive_seconds) / 3600, 2)
+            round(
+                (sum(toInt64(labor_seconds)) - sum(toInt64(productive_seconds)))
+                / 3600.0,
+                2
+            )
                 AS non_productive_hours,
-            round(100 * sum(productive_seconds) / nullIf(sum(labor_seconds), 0), 2)
-                AS time_on_tools_pct
+            if(
+                sum(labor_seconds) = 0,
+                0.0,
+                round(
+                    100.0 * toFloat64(sum(productive_seconds))
+                    / toFloat64(sum(labor_seconds)),
+                    2
+                )
+            ) AS time_on_tools_pct
         FROM {TWIN_DATABASE}.twin_daily_kpis
         WHERE {where}
         GROUP BY worker_id
@@ -374,7 +409,8 @@ with validation_tab:
         SELECT
             countIf(event_type = 'ENTER') AS enter_events,
             countIf(event_type = 'EXIT') AS exit_events,
-            enter_events - exit_events AS event_balance
+            toInt64(countIf(event_type = 'ENTER'))
+                - toInt64(countIf(event_type = 'EXIT')) AS event_balance
         FROM {TWIN_DATABASE}.twin_zone_events
         WHERE {where}
         """,
@@ -396,8 +432,11 @@ with validation_tab:
     ).iloc[0]
 
     check_1, check_2, check_3 = st.columns(3)
-    check_1.metric("Balance ENTER − EXIT", f"{int(audit['event_balance']):,}")
-    check_2.metric("Jornadas con horario inválido", f"{int(valid_days['invalid_worker_days']):,}")
+    check_1.metric("Balance ENTER − EXIT", format_integer(audit["event_balance"]))
+    check_2.metric(
+        "Jornadas con horario inválido",
+        format_integer(valid_days["invalid_worker_days"]),
+    )
     check_3.metric("Horas laborales semanales", "42.0 h")
 
     if int(audit["event_balance"]) == 0 and int(valid_days["invalid_worker_days"]) == 0:
