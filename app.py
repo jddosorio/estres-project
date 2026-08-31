@@ -33,8 +33,7 @@ st.markdown(
 
 environmental_page = st.Page(
     "views/1_Monitoreo_Ambiental.py",
-    title="Monitoreo Ambiental",
-    default=True,
+    title="Monitoreo Ambiental"
 )
 layout_page = st.Page("views/5_Layout.py", title="Layout", default=True)
 digital_twin_page = st.Page("views/2_Gemelo_Digital.py", title="Gemelo Digital")
