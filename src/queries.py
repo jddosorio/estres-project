@@ -75,29 +75,71 @@ def read_environment_data(
     x_sql = quote_identifier(x_column)
     temperature_sql = quote_identifier(temperature_column)
     humidity_sql = quote_identifier(humidity_column)
+
     limit = max(10, min(int(limit), 100000))
 
-    where_sql = ""
-    parameters: dict[str, int] = {"limit": limit}
-    if use_time_filter:
-        where_sql = f"WHERE {x_sql} >= now() - INTERVAL {{hours:UInt32}} HOUR"
-        parameters["hours"] = max(1, min(int(hours), 24 * 365))
+    parameters = {
+        "limit": limit,
+        "hours": max(1, min(int(hours), 24 * 365)),
+    }
 
-    query = f"""
-        SELECT
-            toTimeZone({x_sql}, 'America/Santiago') AS x_value,
-            {temperature_sql} / 1000.0 AS temperature_c,
-            {humidity_sql} / 1000.0 AS humidity_pct
-        FROM {table_sql}
-        {where_sql}
-        ORDER BY {x_sql} DESC
-        LIMIT {{limit:UInt32}}
-    """
-    result = get_client().query_df(query, parameters=parameters)
+    if use_time_filter:
+        query = f"""
+            WITH (
+                SELECT max({x_sql})
+                FROM {table_sql}
+            ) AS latest_timestamp
+
+            SELECT
+                toTimeZone({x_sql}, 'America/Santiago') AS x_value,
+                {temperature_sql} / 1000.0 AS temperature_c,
+                {humidity_sql} / 1000.0 AS humidity_pct
+            FROM {table_sql}
+            WHERE {x_sql} >= latest_timestamp - toIntervalHour({{hours:UInt32}})
+              AND {x_sql} <= latest_timestamp
+            ORDER BY {x_sql} DESC
+            LIMIT {{limit:UInt32}}
+        """
+    else:
+        query = f"""
+            SELECT
+                {x_sql} AS x_value,
+                {temperature_sql} / 1000.0 AS temperature_c,
+                {humidity_sql} / 1000.0 AS humidity_pct
+            FROM {table_sql}
+            ORDER BY {x_sql} DESC
+            LIMIT {{limit:UInt32}}
+        """
+
+    result = get_client().query_df(
+        query,
+        parameters=parameters,
+    )
+
+    expected_columns = [
+        "x_value",
+        "temperature_c",
+        "humidity_pct",
+    ]
+
+    if result.empty:
+        return pd.DataFrame(columns=expected_columns)
+
+    if "x_value" not in result.columns:
+        raise RuntimeError(
+            "ClickHouse query did not return x_value. "
+            f"Returned columns: {result.columns.tolist()}"
+        )
 
     if pd.api.types.is_datetime64_any_dtype(result["x_value"]):
         if result["x_value"].dt.tz is not None:
-            result["x_value"] = result["x_value"].dt.tz_localize(None)
+            result["x_value"] = (
+                result["x_value"]
+                .dt.tz_localize(None)
+            )
 
-    return result.sort_values("x_value").reset_index(drop=True)
-
+    return (
+        result
+        .sort_values("x_value")
+        .reset_index(drop=True)
+    )
