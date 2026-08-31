@@ -36,7 +36,7 @@ environmental_page = st.Page(
     title="Monitoreo Ambiental",
     default=True,
 )
-layout_page = st.Page("views/5_Layout.py", title="Layout")
+layout_page = st.Page("views/5_Layout.py", title="Layout", default=True)
 digital_twin_page = st.Page("views/2_Gemelo_Digital.py", title="Gemelo Digital")
 clickhouse_page = st.Page("views/4_ClickHouse.py", title="Arquitectura ClickHouse")
 scanner_config_page = st.Page(
