@@ -1,101 +1,268 @@
-"""Main navigation for the PROTEGE Streamlit validation platform."""
+"""Main navigation for the ESTRES Streamlit TRL-6 validation platform."""
 
 from __future__ import annotations
 
 import streamlit as st
 
 
+# ---------------------------------------------------------------------------
+# Page configuration
+# ---------------------------------------------------------------------------
+
 st.set_page_config(
-    page_title="PROTEGE — Plataforma de Validación",
-    page_icon="🛡️",
+    page_title="ESTRES — Validación TRL-6",
+    page_icon="📈",
     layout="wide",
 )
 
+
+# Selected sidebar page: white tab connected visually to main page
 st.markdown(
     """
     <style>
-        .block-container {
-            padding-top: 2rem;
-            padding-bottom: 1rem;
-        }
-        h1 {
-            font-size: 2.2rem !important;
-            line-height: 1.15 !important;
-            margin-bottom: 0.25rem !important;
-        }
-        [data-testid="stSidebarNav"] {
-            padding-top: 0.5rem;
-        }
+    /* Active page link itself */
+    section[data-testid="stSidebar"] a[aria-current="page"],
+    section[data-testid="stSidebar"] a[aria-current="page"] > div,
+    section[data-testid="stSidebar"] a[aria-current="page"] span {
+        background-color: white !important;
+    }
+
+    /* Streamlit page-link wrapper containing the active link */
+    section[data-testid="stSidebar"] div:has(> a[aria-current="page"]) {
+        background-color: white !important;
+    }
+
+    /* Extend active row to sidebar's right edge */
+    section[data-testid="stSidebar"] div:has(> a[aria-current="page"]) {
+        margin-right: -2rem !important;
+        padding-right: 2rem !important;
+        border-radius: 8px 0 0 8px !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-environmental_page = st.Page(
-    "views/1_Monitoreo_Ambiental.py",
-    title="Monitoreo Ambiental"
+
+# ---------------------------------------------------------------------------
+# Global style
+# ---------------------------------------------------------------------------
+
+
+
+# ---------------------------------------------------------------------------
+# Pages
+# ---------------------------------------------------------------------------
+
+system_page = st.Page(
+    "views/1_Sistema.py",
+    title="Sistema",
+    default=True,
 )
-layout_page = st.Page("views/5_Layout.py", title="Layout", default=True)
-digital_twin_page = st.Page("views/2_Gemelo_Digital.py", title="Gemelo Digital")
-clickhouse_page = st.Page("views/4_ClickHouse.py", title="Arquitectura ClickHouse")
-scanner_config_page = st.Page(
-    "views/6_Configuracion_Tags_Scanners.py",
-    title="Configuración",
+
+stress_control_page = st.Page(
+    "views/9_Stress_Control_Unit.py",
+    title="Stress Control Unit",
 )
-transit_page = st.Page("views/7_Pruebas_Transito.py", title="Pruebas de Tránsito")
-permanence_page = st.Page(
-    "views/8_Permanencia_Zona.py",
-    title="Permanencia por Zona",
+
+load_cycles_page = st.Page(
+    "views/2_Ciclos_Estres.py",
+    title="Ciclos de Estres",
 )
-reports_page = st.Page("views/3_Reportes.py", title="Reportes")
+
+fatigue_page = st.Page(
+    "views/3_Fatiga.py",
+    title="Fatiga",
+)
+
+experimental_tests_page = st.Page(
+    "views/10_Pruebas_Experimentales.py",
+    title="Pruebas Experimentales",
+)
+
+communications_page = st.Page(
+    "views/4_Comunicaciones.py",
+    title="Comunicaciones",
+)
+
+gps_page = st.Page(
+    "views/5_GPS.py",
+    title="Posición GPS",
+)
+
+store_forward_page = st.Page(
+    "views/6_Store-Forward.py",
+    title="Store & Forward",
+)
+
+results_page = st.Page(
+    "views/7_Resultados.py",
+    title="Resultados TRL-6",
+)
+
+patent_page = st.Page(
+    "views/8_Patente_Invencion.py",
+    title="Patente de Invención",
+)
+
+diffusion_page = st.Page(
+    "views/11_Difusion.py",
+    title="Difusión del Proyecto",
+)
+
+
+# ---------------------------------------------------------------------------
+# Navigation
+# ---------------------------------------------------------------------------
 
 all_pages = [
-    environmental_page,
-    layout_page,
-    digital_twin_page,
-    clickhouse_page,
-    scanner_config_page,
-    transit_page,
-    permanence_page,
-    reports_page,
+    system_page,
+    stress_control_page,
+    load_cycles_page,
+    fatigue_page,
+    experimental_tests_page,
+    communications_page,
+    gps_page,
+    store_forward_page,
+    results_page,
+    patent_page,
+    diffusion_page,
 ]
 
-navigation = st.navigation(all_pages, position="hidden")
+navigation = st.navigation(
+    all_pages,
+    position="hidden",
+)
+
+
+# ---------------------------------------------------------------------------
+# Sidebar
+# ---------------------------------------------------------------------------
 
 with st.sidebar:
+
+    st.caption("CORFO INNOVA REGIÓN")
+
+    st.markdown("## ESTRES")
+
     st.markdown(
-        """
-        <div style="padding: 0.25rem 0 0.5rem 0;">
-            <div style="font-size: 1.05rem; font-weight: 700;">
-                CORFO INNOVA REGIÓN
-            </div>
-            <div style="margin-top: 0.2rem; font-weight: 600;">PULSOTECH - PROTEGE</div>
-            <div style="color: #667085; margin-top: 0.1rem;">
-                25IRA2-308607E
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
+        "**Monitoreo Estructural de Equipos Mineros**"
     )
 
-    st.divider()
-    st.caption("VALIDACIÓN EN LÍNEA")
-    st.page_link(environmental_page, label="Monitoreo Ambiental", icon="🌡️")
+    st.caption("25IRA2-308620")
+
+   
+
+    # -----------------------------------------------------------------------
+    # System
+    # -----------------------------------------------------------------------
 
     st.divider()
-    st.caption("VALIDACIÓN DE BASE DE DATOS")
-    st.page_link(layout_page, label="Layout", icon="🗺️")
-    st.page_link(digital_twin_page, label="Gemelo Digital", icon="🏗️")
-    st.page_link(clickhouse_page, label="Arquitectura ClickHouse", icon="🗄️")
+    st.caption("SISTEMA")
+
+    st.page_link(
+        system_page,
+        label="Sistema",
+        icon="⚙️",
+    )
+    st.page_link(
+        stress_control_page,
+        label="Stress Control Unit",
+        icon="🎛️",
+    )
+
+    # -----------------------------------------------------------------------
+    # Structural monitoring
+    # -----------------------------------------------------------------------
 
     st.divider()
-    st.caption("VALIDACIÓN DE TAGS Y SCANNERS BLE")
-    st.page_link(scanner_config_page, label="Configuración", icon="📡")
-    st.page_link(transit_page, label="Pruebas de Tránsito", icon="🚶")
-    st.page_link(permanence_page, label="Permanencia por Zona", icon="📍")
+    st.caption("MONITOREO ESTRUCTURAL")
+
+    st.page_link(
+        load_cycles_page,
+        label="Ciclos de Estres",
+        icon="📈",
+    )
+
+    st.page_link(
+        fatigue_page,
+        label="Fatiga",
+        icon="〽️",
+    )
+
+    st.page_link(
+        experimental_tests_page,
+        label="Pruebas Experimentales",
+        icon="🧪",
+    )
+
+    # -----------------------------------------------------------------------
+    # Communications
+    # -----------------------------------------------------------------------
 
     st.divider()
-    st.caption("RESULTADOS")
-    st.page_link(reports_page, label="Reportes", icon="📄")
+    st.caption("COMUNICACIONES")
+
+    st.page_link(
+        communications_page,
+        label="Comunicaciones",
+        icon="📡",
+    )
+
+    st.page_link(
+        gps_page,
+        label="Posición GPS",
+        icon="📍",
+    )
+
+    st.page_link(
+        store_forward_page,
+        label="Store & Forward",
+        icon="💾",
+    )
+
+    # -----------------------------------------------------------------------
+    # Validation
+    # -----------------------------------------------------------------------
+
+    st.divider()
+    st.caption("VALIDACIÓN")
+
+    st.page_link(
+        results_page,
+        label="Resultados TRL-6",
+        icon="✅",
+    )
+
+    # -----------------------------------------------------------------------
+    # Intellectual property
+    # -----------------------------------------------------------------------
+
+    st.divider()
+    st.caption("PROPIEDAD INTELECTUAL")
+
+    st.page_link(
+        patent_page,
+        label="Patente de Invención",
+        icon="📄",
+    )
+
+    # -----------------------------------------------------------------------
+    # Difusion
+    # -----------------------------------------------------------------------
+
+    st.divider()
+    st.caption("DIFUSION")
+
+    st.page_link(
+        diffusion_page,
+        label="Difusión del Proyecto",
+        icon="📣",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Run selected page
+# ---------------------------------------------------------------------------
 
 navigation.run()

@@ -195,3 +195,137 @@ laborales aplicables.
 4. Comparar zona inferida contra zona real y reportar matriz de confusión.
 5. Ejecutar 3–5 jornadas simuladas con varios tags y tráfico normal.
 6. Congelar parámetros antes de medir los KPI del piloto.
+
+
+## Ejecución local streamlit
+
+cd ~/Projects/protege-project
+source .venv/bin/activate
+python -m streamlit run app.py
+
+## Ejecución local Streamlit
+
+Para ejecutar la aplicación PROTEGE localmente:
+
+```bash
+cd ~/Projects/protege-project
+
+source .venv/bin/activate
+
+python -m streamlit run app.py
+```
+
+La aplicación quedará disponible normalmente en:
+
+`http://localhost:8501`
+
+---
+
+## Git
+
+### Revisar cambios
+
+```bash
+git status
+```
+
+### Guardar cambios en el repositorio local
+
+```bash
+git add .
+git commit -m "Update PROTEGE"
+```
+
+### Enviar cambios a GitHub
+
+```bash
+git push origin main
+```
+
+Para verificar el repositorio remoto configurado:
+
+```bash
+git remote -v
+```
+
+---
+
+## Despliegue en Streamlit Community Cloud
+
+La aplicación puede desplegarse directamente desde el repositorio GitHub.
+
+Configuración:
+
+```text
+Repository:  jddosorio/protege-project
+Branch:      main
+Main file:   app.py
+Python:      3.11
+```
+
+Una vez desplegada, los cambios posteriores se publican mediante:
+
+```bash
+git add .
+git commit -m "Update PROTEGE"
+git push origin main
+```
+
+Streamlit Community Cloud detectará los cambios realizados en GitHub y actualizará la aplicación.
+
+### Credenciales de ClickHouse
+
+Las credenciales de ClickHouse Cloud no deben almacenarse en GitHub.
+
+El archivo local:
+
+```text
+.streamlit/secrets.toml
+```
+
+debe estar excluido mediante `.gitignore`:
+
+```text
+.streamlit/secrets.toml
+```
+
+En Streamlit Community Cloud, las credenciales deben configurarse en **App settings → Secrets**.
+
+
+git status
+git add app.py
+git commit -m "Hola"
+git push origin main
+
+
+cd ~/Projects/protege-project
+
+git status
+
+git add src/queries.py
+
+git commit -m "Show environmental data relative to latest logged sample"
+
+git push origin main
+
+
+### For this project, when we modify several files, the simplest workflow is:
+### git add .  which stages all modified/new files in the project.
+Before committing, git status is still important: verify that you aren't accidentally including files such as .streamlit/secrets.toml, .env, database dumps, or other credentials.
+git status
+git add .
+git commit -m "Update PROTEGE"
+git push origin main
+
+### For this project, when we modify several files, the simplest workflow is:
+
+git status
+
+git add .
+
+git status
+
+git commit -m "Update PROTEGE"
+
+git push origin main
+
