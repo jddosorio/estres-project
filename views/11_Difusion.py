@@ -100,10 +100,10 @@ st.subheader("Material audiovisual")
 
 st.markdown(
     """
-    Como parte de las actividades de difusión del proyecto se desarrollaron
-    contenidos audiovisuales orientados a presentar la tecnología ESTRES,
-    su aplicación en monitoreo estructural y su participación en actividades
-    de innovación y difusión tecnológica.
+    Como parte de las actividades de difusión del proyecto se presentan
+    contenidos audiovisuales desarrollados por **PULSO Tech**, junto con
+    referencias de aplicaciones industriales de las tecnologías utilizadas
+    en el proyecto ESTRES.
     """
 )
 
@@ -160,6 +160,27 @@ with st.container(border=True):
 
     st.video(
         "https://www.youtube.com/watch?v=BturUroqeaY"
+    )
+
+
+with st.container(border=True):
+
+    st.markdown("### 🌬️ ESR en Energía Eólica")
+
+    st.markdown(
+        """
+        **Aplicación internacional de la tecnología utilizada en el proyecto ESTRES**
+
+        HEIDENHAIN presenta la aplicación de sensores de deformación **ESR**
+        para el monitoreo continuo de grandes estructuras en aerogeneradores.
+        La medición permite conocer las cargas reales sobre torres y palas y
+        utilizar esta información para mejorar el control y optimizar la
+        operación.
+
+        **Tecnología utilizada:** HEIDENHAIN ESR Strain Sensors
+
+        [🔗 Ver aplicación HEIDENHAIN — Wind Energy](https://www.heidenhain.com/industries/windenergy-2026)
+        """
     )
 
 # -----------------------------------------------------------------------------
