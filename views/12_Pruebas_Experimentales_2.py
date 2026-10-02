@@ -121,6 +121,45 @@ st.info(
 
 
 # -----------------------------------------------------------------------------
+# Configuración experimental
+# -----------------------------------------------------------------------------
+st.subheader("Configuración experimental")
+
+st.markdown(
+    """
+La campaña se realizó utilizando la arquitectura completa del sistema **ESTRES**,
+desde la medición estructural en el vehículo hasta el almacenamiento remoto de
+los datos.
+
+1. **Sensor ESR:** instalado directamente sobre el chasis del camión betonera
+   para medir la respuesta estructural durante el desplazamiento.
+
+2. **Camión betonera cargado:** el ensayo se realizó con aproximadamente
+   **14 toneladas de concreto**, sobre un vehículo de aproximadamente **25
+   toneladas**, alcanzando una masa total del orden de **39 toneladas**.
+
+3. **Sistema electrónico a bordo:** la caja electrónica de adquisición,
+   procesamiento y comunicaciones fue instalada en la cabina del camión
+   betonera.
+
+4. **Historiador remoto:** los datos fueron transmitidos y almacenados en un
+   **Canary Historian Server**, ejecutándose remotamente en un computador
+   ubicado en las oficinas de **PULSO SpA**.
+
+5. **Recorrido experimental:** el camión realizó un trayecto desde el sector
+   **Huascar hasta calle Azufre, Antofagasta**, registrándose simultáneamente
+   las variables estructurales y la posición GPS durante el recorrido.
+"""
+)
+
+st.info(
+    "La prueba permitió validar la cadena completa de medición: "
+    "Sensor ESR → adquisición y procesamiento a bordo → comunicación remota → "
+    "Canary Historian Server, manteniendo además la correlación temporal con GPS."
+)
+
+
+# -----------------------------------------------------------------------------
 # Carga de datos
 # -----------------------------------------------------------------------------
 st.subheader("Datos registrados")
