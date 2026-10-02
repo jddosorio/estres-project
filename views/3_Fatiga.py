@@ -29,14 +29,19 @@ COLUMN_MAP = {
 # PLC S-N curve
 # ---------------------------------------------------------------------------
 
-SN_STRESS = [100, 150, 200, 250, 300]
+SN_STRESS = [
+    100, 110, 125,
+    150, 200, 250, 300
+]
 
 SN_CYCLES = [
-    10_000_000,
-    1_000_000,
-    100_000,
-    10_000,
-    1_000,
+    1_000_000_000,   # 1G
+    100_000_000,     # 100M
+    10_000_000,      # 10M - PLC point
+    1_000_000,       # 1M
+    100_000,         # 100k
+    10_000,          # 10k
+    1_000,           # 1k
 ]
 
 
@@ -194,8 +199,9 @@ with col_chart:
 
     fig_sn.update_layout(
         xaxis=dict(
-            title="Número de ciclos N",
+            title="Número de ciclos N (escala logarítmica)",
             type="log",
+            dtick=1,
         ),
         yaxis=dict(
             title="Stress Range [MPa]",
@@ -212,6 +218,16 @@ with col_chart:
     st.plotly_chart(
         fig_sn,
         use_container_width=True,
+    )
+
+    st.caption(
+        "El eje X utiliza escala logarítmica (log10). Cada intervalo horizontal "
+        "representa una década en el número de ciclos: 1k → 10k → 100k → 1M → 10M."
+    )
+
+    st.info(
+        "La interpolación de la curva S-N debe realizarse en el dominio logarítmico "
+        "de los ciclos (log10 N), consistente con la representación de la curva."
     )
 
 
