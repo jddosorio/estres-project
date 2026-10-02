@@ -164,8 +164,53 @@ st.caption(
 # -----------------------------------------------------------------------------
 st.subheader("Respuesta estructural durante el trayecto")
 
-chart = data.set_index("Timestamp")[["Stress", "Stress Range"]]
-st.line_chart(chart, height=360)
+import plotly.graph_objects as go
+
+fig = go.Figure()
+
+fig.add_trace(
+    go.Scatter(
+        x=data["Timestamp"],
+        y=data["Stress"],
+        mode="lines",
+        name="Stress",
+        hoverinfo="skip",
+    )
+)
+
+fig.add_trace(
+    go.Scatter(
+        x=data["Timestamp"],
+        y=data["Stress Range"],
+        mode="lines",
+        name="Stress Range",
+        hoverinfo="skip",
+    )
+)
+
+fig.update_layout(
+    height=360,
+    xaxis_title="Tiempo",
+    yaxis_title="Stress [MPa]",
+    hovermode=False,
+    margin=dict(l=20, r=20, t=20, b=20),
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True,
+    config={
+        "displayModeBar": True,
+        "scrollZoom": False,
+        "doubleClick": False,
+        "staticPlot": False,
+        "modeBarButtonsToRemove": [
+            "toImage",
+            "select2d",
+            "lasso2d",
+        ],
+    },
+)
 
 st.markdown(
     """
