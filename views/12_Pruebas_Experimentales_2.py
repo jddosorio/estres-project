@@ -174,7 +174,12 @@ fig.add_trace(
         y=data["Stress"],
         mode="lines",
         name="Stress",
-        hoverinfo="skip",
+        hovertemplate=(
+            "<b>Stress</b><br>"
+            "Tiempo: %{x|%H:%M:%S}<br>"
+            "Valor: %{y:.2f} MPa"
+            "<extra></extra>"
+        ),
     )
 )
 
@@ -184,7 +189,12 @@ fig.add_trace(
         y=data["Stress Range"],
         mode="lines",
         name="Stress Range",
-        hoverinfo="skip",
+        hovertemplate=(
+            "<b>Stress Range</b><br>"
+            "Tiempo: %{x|%H:%M:%S}<br>"
+            "Valor: %{y:.2f} MPa"
+            "<extra></extra>"
+        ),
     )
 )
 
@@ -192,7 +202,7 @@ fig.update_layout(
     height=360,
     xaxis_title="Tiempo",
     yaxis_title="Stress [MPa]",
-    hovermode=False,
+    hovermode="x unified",
     margin=dict(l=20, r=20, t=20, b=20),
 )
 
