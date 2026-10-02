@@ -9,7 +9,7 @@ from PIL import Image
 # -----------------------------------------------------------------------------
 
 st.set_page_config(
-    page_title="Pruebas Experimentales | ESTRES",
+    page_title="Pruebas Experimentales #1 | ESTRES",
     page_icon="🧪",
     layout="wide",
 )
@@ -31,7 +31,7 @@ VIDEO_SENSOR = "https://youtu.be/L9qCXps6sfA"
 # Título
 # -----------------------------------------------------------------------------
 
-st.title("🧪 Pruebas Experimentales")
+st.title("🧪 Pruebas Experimentales #1")
 
 st.caption(
     "Proyecto CORFO 25IRA2-308620 — "

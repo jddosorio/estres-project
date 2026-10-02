@@ -75,9 +75,14 @@ fatigue_page = st.Page(
     title="Fatiga",
 )
 
-experimental_tests_page = st.Page(
-    "views/10_Pruebas_Experimentales.py",
-    title="Pruebas Experimentales",
+experimental_tests_page_1 = st.Page(
+    "views/10_Pruebas_Experimentales_1.py",
+    title="Pruebas Experimentales #1",
+)
+
+experimental_tests_page_2 = st.Page(
+    "views/12_Pruebas_Experimentales_2.py",
+    title="Pruebas Experimentales #2",
 )
 
 communications_page = st.Page(
@@ -120,7 +125,8 @@ all_pages = [
     stress_control_page,
     load_cycles_page,
     fatigue_page,
-    experimental_tests_page,
+    experimental_tests_page_1,
+    experimental_tests_page_2,
     communications_page,
     gps_page,
     store_forward_page,
@@ -191,8 +197,14 @@ with st.sidebar:
     )
 
     st.page_link(
-        experimental_tests_page,
-        label="Pruebas Experimentales",
+        experimental_tests_page_1,
+        label="Pruebas Experimentales #1",
+        icon="🧪",
+    )
+
+    st.page_link(
+        experimental_tests_page_2,
+        label="Pruebas Experimentales #2",
         icon="🧪",
     )
 

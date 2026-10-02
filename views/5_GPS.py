@@ -319,7 +319,7 @@ view_state = pdk.ViewState(
 # -------------------------------------------------------------------------
 
 deck = pdk.Deck(
-    map_style="light",
+    map_style="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
     initial_view_state=view_state,
     layers=[
         route_layer,

@@ -3,7 +3,7 @@ ESTRES Streamlit --- Helpful Hints
 This document contains the basic commands required to work with the
 ESTRES Streamlit application.
 
-1. Open the Project
+# 1. Open the Project
 
 From Terminal, move to the project directory:
 
@@ -13,7 +13,7 @@ ls
 You should see at least app.py, views/, images/, sample_data/,
 and requirements.txt.
 
-2. Activate the Python Virtual Environment
+# 2. Activate the Python Virtual Environment
 
 The project uses a Python virtual environment named .venv.
 
@@ -22,7 +22,7 @@ which python
 
 which python should point to .../project/.venv/bin/python.
 
-3. Install the Dependencies
+# 3. Install the Dependencies
 
 For a new installation:
 
@@ -34,7 +34,7 @@ python -m pip freeze > requirements.txt
 
 Review it before committing.
 
-4. Run Streamlit Locally
+# 4. Run Streamlit Locally
 
 source .venv/bin/activate
 python -m streamlit run app.py
@@ -45,7 +45,7 @@ http://localhost:8501
 
 To stop it, press Ctrl + C.
 
-5. Local Development Workflow
+# 5. Local Development Workflow
 
 After modifying Python files, Streamlit normally detects the changes.
 Save the file and rerun from the browser if required.
@@ -58,7 +58,7 @@ then:
 
 python -m streamlit run app.py
 
-6. Check the Git Repository
+# 6. Check the Git Repository
 
 Before committing:
 
@@ -76,7 +76,7 @@ These files should normally not be committed:
 
 Include them in .gitignore.
 
-7. Upload Changes to GitHub
+# 7. Upload Changes to GitHub
 
 git status
 git add .
@@ -92,7 +92,7 @@ Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
 
-8. Run the Application in Streamlit Community Cloud
+# 8. Run the Application in Streamlit Community Cloud
 
 The cloud version does not require running Streamlit manually from your
 Mac.
@@ -113,7 +113,7 @@ ESTRES Web Application
 The application code and required public resources must be available in
 the GitHub repository.
 
-9. Deploy to Streamlit Community Cloud
+# 9. Deploy to Streamlit Community Cloud
 
 Open Streamlit Community Cloud:
 
@@ -138,7 +138,7 @@ execute app.py;
 
 publish the application.
 
-10. requirements.txt
+# 10. requirements.txt
 
 Typical dependencies for this project include:
 
@@ -154,7 +154,7 @@ the application.
 If a module works locally but fails in Streamlit Cloud, first verify
 that it is included in requirements.txt.
 
-11. Update the Cloud Application
+# 11. Update the Cloud Application
 
 Normal workflow:
 
@@ -185,7 +185,7 @@ configured GitHub branch and redeploys the application.
 There is normally no need to execute streamlit run app.py manually on
 the cloud server.
 
-12. Local vs Cloud Execution
+# 12. Local vs Cloud Execution
 
 Local
 
@@ -206,7 +206,7 @@ Streamlit Community Cloud retrieves the project from GitHub and runs the
 application remotely. Access it using the public Streamlit URL assigned
 during deployment.
 
-13. Images and Sample Data
+# 13. Images and Sample Data
 
 Store application images under:
 
@@ -226,7 +226,7 @@ DATA_DIR = Path("sample_data")
 Do not use absolute Mac paths such as /Users/username/..., because
 they will not exist in Streamlit Community Cloud.
 
-14. YouTube Videos
+# 14. YouTube Videos
 
 For videos embedded using Streamlit, prefer the standard YouTube URL:
 
@@ -240,7 +240,7 @@ https://www.youtube.com/shorts/VIDEO_ID
 The standard watch?v= URL is more suitable for embedded Streamlit
 playback.
 
-15. Troubleshooting
+# 15. Troubleshooting
 
 Streamlit command not found
 
@@ -276,11 +276,11 @@ Check Python
 python --version
 which python
 
-16. Recommended Workflow
+# 16. Recommended Workflow
 
 For normal development:
 
-cd /path/to/estres
+cd /Users/josorio/Projects/estres-project
 source .venv/bin/activate
 python -m streamlit run app.py
 
@@ -311,3 +311,89 @@ git push origin main
 Cloud deployment
 
 Local development → GitHub → Streamlit Community Cloud
+
+# GitHub and Streamlit Cloud Notes
+
+## GitHub Account
+
+GitHub account:
+
+    jddosorio
+
+Main repositories:
+
+    PROTEGE:
+    https://github.com/jddosorio/protege-project
+
+    ESTRES:
+    https://github.com/jddosorio/estres-project
+
+
+## Streamlit Community Cloud
+
+Streamlit Community Cloud management:
+
+    https://share.streamlit.io
+
+Use this site to:
+
+- Deploy a new Streamlit application.
+- Reboot an application.
+- Check deployment logs.
+- Change application settings.
+- Verify the GitHub repository and branch associated with an application.
+
+
+## PROTEGE Application
+
+GitHub repository:
+
+    https://github.com/jddosorio/protege-project
+
+Streamlit application:
+
+    https://protege.streamlit.app
+
+Deployment configuration:
+
+    Repository:      jddosorio/protege-project
+    Branch:          main
+    Main file path:  app.py
+
+Local project directory:
+
+    protege-project
+
+
+## ESTRES Application
+
+GitHub repository:
+
+    https://github.com/jddosorio/estres-project
+
+Streamlit application:
+
+    https://estres.streamlit.app
+
+Deployment configuration:
+
+    Repository:      jddosorio/estres-project
+    Branch:          main
+    Main file path:  app.py
+
+Local project directory:
+
+    estres-project
+
+
+# IMPORTANT — Verify Repository Before Commit and Push
+
+PROTEGE and ESTRES are completely separate projects.
+
+Before running `git add`, `git commit`, or `git push`, always verify
+which local project and GitHub repository are active:
+
+```bash
+pwd
+git remote -v
+git statusnow i woiukd like to go to Inspeccoin del
