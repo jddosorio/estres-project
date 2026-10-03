@@ -547,28 +547,55 @@ El registro obtenido durante la campaña permite identificar claramente
 diferentes condiciones de **demanda estructural** del camión betonera.
 
 Durante el **trayecto con carga**, la señal de Stress presenta variaciones
-asociadas a las condiciones dinámicas de circulación. Se observan eventos
-transitorios de mayor demanda estructural, principalmente asociados a cambios
-en la dinámica del vehículo, tales como **frenadas y otras maniobras**, los
-cuales se manifiestan también como incrementos de **Stress Rate [MPa/s]**.
+asociadas a las condiciones dinámicas de circulación. La georreferenciación de
+los eventos de mayor **Stress Range** muestra que algunos de estos peaks
+coinciden espacialmente con sectores donde el vehículo realiza **cambios de
+dirección**.
+
+Este comportamiento es consistente con la dinámica esperada durante una curva:
+la masa de concreto contenida en el tambor está sometida a aceleraciones
+laterales y puede experimentar movimiento relativo respecto del vehículo,
+modificando las fuerzas y momentos transmitidos desde la betonera hacia el
+chasis.
+
+También se observan peaks importantes de Stress Range en sectores donde el
+cambio de dirección es reducido. Estos eventos podrían estar asociados a otras
+condiciones dinámicas, particularmente **frenadas, aceleraciones o
+irregularidades del camino**. Durante una frenada, la desaceleración
+longitudinal del vehículo y el movimiento de la masa de concreto pueden
+producir una transferencia adicional de carga sobre el chasis.
+
+Los datos GPS disponibles permiten investigar estas relaciones mediante el
+cálculo de **velocidad, aceleración longitudinal, rumbo (Heading) y velocidad
+de cambio de rumbo (Yaw Rate)**. De esta forma es posible correlacionar los
+peaks de Stress Range con maniobras longitudinales y laterales del vehículo.
+
+Estas asociaciones deben considerarse por ahora como **hipótesis de trabajo**.
+La campaña no dispone de una medición directa de frenado, aceleración lateral
+o movimiento del concreto dentro del tambor. La incorporación de una **IMU**
+en futuras campañas permitiría medir directamente estas variables y confirmar
+experimentalmente su relación con la respuesta estructural.
+
+### Descarga del concreto
 
 La condición de mayor **demanda estructural sostenida** se observa durante la
-**descarga del cemento**, aproximadamente entre las **12:42 y 12:54**.
+**descarga del concreto**, aproximadamente entre las **12:42 y 12:54**.
 Durante este período, el Stress se mantiene en un nivel significativamente
 superior al observado durante gran parte del recorrido, alcanzando un valor
 medio aproximado de **35 MPa**.
 
 Este comportamiento indica que la descarga constituye una condición operacional
-estructuralmente relevante. A diferencia de los peaks transitorios observados
-durante el desplazamiento, durante la descarga se presenta una demanda
-estructural elevada y sostenida durante varios minutos.
+estructuralmente relevante. A diferencia de los **peaks transitorios**
+observados durante el desplazamiento, durante la descarga se presenta una
+demanda estructural elevada y sostenida durante varios minutos.
 
 En conjunto, la prueba permitió distinguir dos tipos principales de demanda:
 
-- **demanda estructural transitoria**, asociada principalmente a la dinámica
-  del vehículo durante el recorrido;
+- **demanda estructural transitoria**, observada durante el desplazamiento y
+  potencialmente asociada a cambios de dirección, frenadas, aceleraciones y
+  otras condiciones dinámicas;
 - **demanda estructural sostenida**, observada principalmente durante la
-  operación de descarga del cemento.
+  operación de descarga del concreto.
 
 ### Fatiga estructural
 
@@ -601,14 +628,23 @@ st.success(
     durante condiciones reales de operación y diferenciar distintos niveles
     y tipos de demanda estructural.
 
-    Los resultados muestran que la mayor **demanda estructural sostenida**
-    se produjo durante la descarga del cemento, mientras que durante el
-    desplazamiento se identificaron eventos transitorios asociados a la
-    dinámica del vehículo.
+    Durante el desplazamiento se identificaron **peaks transitorios de
+    Stress Range** cuya distribución espacial sugiere una posible relación
+    con **cambios de dirección, frenadas y otras maniobras del vehículo**.
+    La correlación con variables dinámicas derivadas del GPS permitirá
+    profundizar este análisis.
+
+    La mayor **demanda estructural sostenida** se produjo durante la descarga
+    del concreto. Para la operación completa analizada se obtuvo además un
+    **Micro Damage acumulado de aproximadamente 1,7 µD**, demostrando la
+    capacidad del sistema para cuantificar no solamente los eventos
+    estructurales individuales, sino también su contribución al daño por
+    fatiga.
 
     La medición simultánea de **Stress, Stress Range, Stress Rate y GPS**
     permite caracterizar la magnitud, duración, instante y ubicación de los
-    eventos estructurales, proporcionando una base experimental para el
-    análisis de fatiga y daño acumulado.
+    eventos estructurales y constituye una base experimental para avanzar
+    hacia la identificación de las condiciones operacionales que generan
+    mayor demanda estructural y daño acumulado.
     """
 )
