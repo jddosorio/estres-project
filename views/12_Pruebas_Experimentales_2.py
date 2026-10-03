@@ -387,12 +387,11 @@ if not top_events.empty:
 
     e3.metric(
         "Micro Damage acumulado",
-        f"{data['Micro Damage'].sum():.2f} µD"
+        f"{data['Micro Damage'].sum():.2f}".replace(".", ",") + " µD"
     )
-
     e4.metric(
         "Máx. Stress Rate Range",
-        f"{data['Stress Rate Range'].max():.2f} MPa/s"
+        f"{data['Stress Rate Range'].max():.0f} MPa/s"
     )
 
     #st.markdown("#### Ubicación de los eventos de mayor Stress Range")
