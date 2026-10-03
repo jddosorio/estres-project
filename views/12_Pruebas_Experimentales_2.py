@@ -424,7 +424,7 @@ st.caption(
 # -----------------------------------------------------------------------------
 # Análisis espacial continuo
 # -----------------------------------------------------------------------------
-st.subheader("Correlación entre posición y solicitación estructural")
+st.subheader("Correlación entre posición y demanda estructural")
 
 st.markdown(
     """
