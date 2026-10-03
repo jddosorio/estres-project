@@ -391,22 +391,57 @@ correlación espacial de los eventos estructurales.
 
 
 # -----------------------------------------------------------------------------
-# Próximo análisis
+# Análisis de resultados
 # -----------------------------------------------------------------------------
-st.subheader("Próximo análisis")
+st.subheader("Análisis de resultados")
 
 st.markdown(
     """
-Como siguiente etapa se propone:
+El registro obtenido durante la campaña permite identificar claramente
+diferentes condiciones de solicitación estructural del camión betonera.
 
-1. identificar automáticamente los eventos de mayor **Stress Range**;
-2. agrupar eventos cercanos espacialmente para detectar zonas repetitivas;
-3. calcular distancia recorrida y velocidad del vehículo a partir del GPS;
-4. comparar solicitaciones según velocidad y sector del trayecto;
-5. repetir el recorrido para evaluar la repetibilidad espacial de los eventos;
-6. comparar campañas **sin carga / con carga / durante descarga**.
+Durante el **trayecto con carga**, la señal de Stress presenta variaciones
+asociadas a las condiciones dinámicas de circulación. Se observan eventos
+transitorios de mayor solicitación, principalmente asociados a cambios en
+la dinámica del vehículo, tales como **frenadas y otras maniobras**, los
+cuales se manifiestan también como incrementos de **Stress Rate [MPa/s]**.
 
-Con estas extensiones será posible avanzar desde la visualización de eventos
-individuales hacia un análisis de **severidad estructural por sector de ruta**.
+La condición de mayor solicitación sostenida se observa durante la
+**descarga del cemento**, aproximadamente entre las **12:42 y 12:54**.
+Durante este período el Stress se mantiene en un nivel significativamente
+superior al observado durante gran parte del recorrido, alcanzando un
+valor medio aproximado de **35 MPa**.
+
+Este comportamiento indica que la descarga constituye una condición
+operacional estructuralmente relevante. A diferencia de los peaks
+transitorios observados durante el desplazamiento, durante la descarga
+se presenta una solicitación elevada y sostenida durante varios minutos.
+
+En conjunto, la prueba permitió distinguir dos tipos de eventos:
+
+- **solicitaciones transitorias**, asociadas principalmente a la dinámica
+  del vehículo durante el recorrido;
+- **solicitaciones sostenidas**, observadas principalmente durante la
+  operación de descarga del cemento.
 """
+)
+
+st.success(
+    """
+    **Conclusión de la prueba**
+
+    La campaña con el camión betonera cargado permitió validar la capacidad
+    del sistema ESTRES para registrar la respuesta estructural del vehículo
+    durante condiciones reales de operación y diferenciar distintas
+    condiciones de solicitación.
+
+    Los resultados muestran que la mayor solicitación sostenida se produjo
+    durante la descarga del cemento, mientras que durante el desplazamiento
+    se identificaron eventos transitorios asociados a la dinámica del vehículo.
+
+    La medición simultánea de **Stress, Stress Range, Stress Rate y GPS**
+    permite caracterizar tanto la magnitud como el instante y ubicación de
+    los eventos estructurales, proporcionando una base experimental para el
+    análisis posterior de fatiga y daño acumulado.
+    """
 )
