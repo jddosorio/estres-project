@@ -306,8 +306,66 @@ if not top_events.empty:
     e3.metric("Micro Damage acumulado*", f"{data['Micro Damage'].sum():.4f}")
     e4.metric("Máx. Stress Rate Range", f"{data['Stress Rate Range'].max():.2f} MPa/s")
 
+    #st.markdown("#### Ubicación de los eventos de mayor Stress Range")
+    #st.map(top_events[["latitude", "longitude"]], latitude="latitude", longitude="longitude", height=450)
     st.markdown("#### Ubicación de los eventos de mayor Stress Range")
-    st.map(top_events[["latitude", "longitude"]], latitude="latitude", longitude="longitude", height=450)
+
+    map_events = top_events.copy()
+
+    map_events["Hora"] = map_events["Timestamp"].dt.strftime("%H:%M:%S")
+
+    fig_events = go.Figure()
+
+    fig_events.add_trace(
+        go.Scattermap(
+            lat=map_events["latitude"],
+            lon=map_events["longitude"],
+            mode="markers",
+            marker=dict(
+                size=9,
+            ),
+            customdata=map_events[
+                [
+                    "Hora",
+                    "Stress",
+                    "Stress Range",
+                    "Stress Rate Range",
+                ]
+            ],
+            hovertemplate=(
+                "<b>Evento estructural</b><br>"
+                "Hora: %{customdata[0]}<br>"
+                "Stress: %{customdata[1]:.2f} MPa<br>"
+                "Stress Range: %{customdata[2]:.2f} MPa<br>"
+                "Stress Rate Range: %{customdata[3]:.2f} MPa/s"
+                "<extra></extra>"
+            ),
+            name="Eventos",
+        )
+    )
+
+    fig_events.update_layout(
+        map=dict(
+            style="carto-positron",
+            center=dict(
+                lat=map_events["latitude"].mean(),
+                lon=map_events["longitude"].mean(),
+            ),
+            zoom=10,
+        ),
+        height=450,
+        margin=dict(l=0, r=0, t=0, b=0),
+        showlegend=False,
+    )
+
+    st.plotly_chart(
+        fig_events,
+        use_container_width=True,
+        config={
+            "displayModeBar": True,
+            "scrollZoom": True,
+        },
+    )
 
     table = top_events[
         [
