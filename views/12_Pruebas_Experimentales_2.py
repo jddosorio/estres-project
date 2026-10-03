@@ -96,27 +96,27 @@ correlacionando la respuesta estructural medida en el chasis con la posición
 geográfica del vehículo.
 
 El trayecto se realizó **desde el sector Huascar hasta calle Azufre**, en
-Antofagasta. Durante la prueba, el camión transportó aproximadamente
-**14 toneladas de concreto**. Considerando una masa aproximada de
-**25 toneladas para la betonera**, la masa total movilizada durante el ensayo
-fue del orden de **39 toneladas**.
+Antofagasta. Durante la prueba, el camión transportó una carga informada por
+el operador como **7 cubos de concreto**, equivalente aproximadamente a
+**14 toneladas de carga**.
 
 El sensor ESR permaneció instalado sobre el chasis y el sistema registró en
 forma simultánea las variables de estrés estructural y la posición GPS. Esto
-permite identificar espacialmente los eventos de carga detectados durante el
+permite identificar espacialmente los ciclos de estrés detectados durante el
 recorrido.
 """
 )
 
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Fecha", "02-10-2026")
-col2.metric("Concreto transportado", "14 t")
-col3.metric("Masa betonera", "25 t")
-col4.metric("Masa total aprox.", "39 t")
+col2.metric("Carga", "7 cubos")
+col3.metric("Carga aprox.", "14 t")
+col4.metric("Trayecto", "Huascar → Azufre")
 
 st.info(
-    "Trayecto experimental: Huascar → calle Azufre, Antofagasta. "
-    "La campaña combina medición estructural ESR y posicionamiento GPS a 1 s."
+    "La cantidad de concreto corresponde a la información proporcionada "
+    "durante la campaña experimental. La masa en vacío del camión betonera "
+    "no fue medida durante esta prueba."
 )
 
 
@@ -134,9 +134,9 @@ los datos.
 1. **Sensor ESR:** instalado directamente sobre el chasis del camión betonera
    para medir la respuesta estructural durante el desplazamiento.
 
-2. **Camión betonera cargado:** el ensayo se realizó con aproximadamente
-   **14 toneladas de concreto**, sobre un vehículo de aproximadamente **25
-   toneladas**, alcanzando una masa total del orden de **39 toneladas**.
+2. **Camión betonera cargado:** el ensayo se realizó con una carga informada
+   como **7 cubos de concreto**, correspondiente aproximadamente a
+   **14 toneladas de carga**.
 
 3. **Sistema electrónico a bordo:** la caja electrónica de adquisición,
    procesamiento y comunicaciones fue instalada en la cabina del camión
