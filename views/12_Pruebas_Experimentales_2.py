@@ -278,8 +278,60 @@ señal durante el desplazamiento.
 # -----------------------------------------------------------------------------
 st.subheader("Trayectoria GPS de la betonera")
 
-route = data[["latitude", "longitude"]].drop_duplicates()
-st.map(route, latitude="latitude", longitude="longitude", height=500)
+#route = data[["latitude", "longitude"]].drop_duplicates()
+#st.map(route, latitude="latitude", longitude="longitude", height=500)
+route = data[
+    ["Timestamp", "latitude", "longitude", "Stress", "Stress Range"]
+].copy()
+
+route["Hora"] = route["Timestamp"].dt.strftime("%H:%M:%S")
+
+fig_route = go.Figure()
+
+fig_route.add_trace(
+    go.Scattermap(
+        lat=route["latitude"],
+        lon=route["longitude"],
+        mode="markers",
+        marker=dict(
+            size=6,
+        ),
+        customdata=route[
+            ["Hora", "Stress", "Stress Range"]
+        ],
+        hovertemplate=(
+            "<b>Trayectoria GPS</b><br>"
+            "Hora: %{customdata[0]}<br>"
+            "Stress: %{customdata[1]:.2f} MPa<br>"
+            "Stress Range: %{customdata[2]:.2f} MPa"
+            "<extra></extra>"
+        ),
+        name="Trayectoria",
+    )
+)
+
+fig_route.update_layout(
+    map=dict(
+        style="carto-positron",
+        center=dict(
+            lat=route["latitude"].mean(),
+            lon=route["longitude"].mean(),
+        ),
+        zoom=10,
+    ),
+    height=500,
+    margin=dict(l=0, r=0, t=0, b=0),
+    showlegend=False,
+)
+
+st.plotly_chart(
+    fig_route,
+    use_container_width=True,
+    config={
+        "displayModeBar": True,
+        "scrollZoom": True,
+    },
+)
 
 st.caption(
     "Posiciones GPS registradas durante la ventana en que existen datos "
