@@ -301,10 +301,26 @@ top_events = events.head(top_n).copy()
 
 if not top_events.empty:
     e1, e2, e3, e4 = st.columns(4)
-    e1.metric("Eventos detectados", f"{len(events):,}".replace(",", "."))
-    e2.metric("Micro Damage > 0", f"{(data['Micro Damage'] > 0).sum():,}".replace(",", "."))
-    e3.metric("Micro Damage acumulado*", f"{data['Micro Damage'].sum():.4f}")
-    e4.metric("Máx. Stress Rate Range", f"{data['Stress Rate Range'].max():.2f} MPa/s")
+
+    e1.metric(
+        "Ciclos de estrés detectados",
+        f"{len(events):,}".replace(",", ".")
+    )
+
+    e2.metric(
+        "Ciclos con Micro Damage > 0",
+        f"{(data['Micro Damage'] > 0).sum():,}".replace(",", ".")
+    )
+
+    e3.metric(
+        "Micro Damage acumulado",
+        f"{data['Micro Damage'].sum():.2f} µD"
+    )
+
+    e4.metric(
+        "Máx. Stress Rate Range",
+        f"{data['Stress Rate Range'].max():.2f} MPa/s"
+    )
 
     #st.markdown("#### Ubicación de los eventos de mayor Stress Range")
     #st.map(top_events[["latitude", "longitude"]], latitude="latitude", longitude="longitude", height=450)
