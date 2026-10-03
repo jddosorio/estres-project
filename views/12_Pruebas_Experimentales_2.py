@@ -108,10 +108,11 @@ recorrido.
 )
 
 col1, col2, col3, col4 = st.columns(4)
+
 col1.metric("Fecha", "02-10-2026")
-col2.metric("Carga", "7 cubos")
-col3.metric("Carga aprox.", "14 t")
-col4.metric("Trayecto", "Huascar → Azufre")
+col2.metric("Carga de concreto", "7 cubos ≈ 14 t")
+col3.metric("Masa betonera aprox.", "3.5 t")
+col4.metric("Carga sobre chasis aprox.", "17.5 t")
 
 st.info(
     "La cantidad de concreto corresponde a la información proporcionada "
