@@ -398,30 +398,30 @@ st.subheader("Análisis de resultados")
 st.markdown(
     """
 El registro obtenido durante la campaña permite identificar claramente
-diferentes condiciones de solicitación estructural del camión betonera.
+diferentes condiciones de **demanda estructural** del camión betonera.
 
 Durante el **trayecto con carga**, la señal de Stress presenta variaciones
 asociadas a las condiciones dinámicas de circulación. Se observan eventos
-transitorios de mayor solicitación, principalmente asociados a cambios en
-la dinámica del vehículo, tales como **frenadas y otras maniobras**, los
+transitorios de mayor demanda estructural, principalmente asociados a cambios
+en la dinámica del vehículo, tales como **frenadas y otras maniobras**, los
 cuales se manifiestan también como incrementos de **Stress Rate [MPa/s]**.
 
-La condición de mayor solicitación sostenida se observa durante la
+La condición de mayor **demanda estructural sostenida** se observa durante la
 **descarga del cemento**, aproximadamente entre las **12:42 y 12:54**.
-Durante este período el Stress se mantiene en un nivel significativamente
-superior al observado durante gran parte del recorrido, alcanzando un
-valor medio aproximado de **35 MPa**.
+Durante este período, el Stress se mantiene en un nivel significativamente
+superior al observado durante gran parte del recorrido, alcanzando un valor
+medio aproximado de **35 MPa**.
 
-Este comportamiento indica que la descarga constituye una condición
-operacional estructuralmente relevante. A diferencia de los peaks
-transitorios observados durante el desplazamiento, durante la descarga
-se presenta una solicitación elevada y sostenida durante varios minutos.
+Este comportamiento indica que la descarga constituye una condición operacional
+estructuralmente relevante. A diferencia de los peaks transitorios observados
+durante el desplazamiento, durante la descarga se presenta una demanda
+estructural elevada y sostenida durante varios minutos.
 
-En conjunto, la prueba permitió distinguir dos tipos de eventos:
+En conjunto, la prueba permitió distinguir dos tipos principales de demanda:
 
-- **solicitaciones transitorias**, asociadas principalmente a la dinámica
+- **demanda estructural transitoria**, asociada principalmente a la dinámica
   del vehículo durante el recorrido;
-- **solicitaciones sostenidas**, observadas principalmente durante la
+- **demanda estructural sostenida**, observada principalmente durante la
   operación de descarga del cemento.
 """
 )
@@ -432,16 +432,17 @@ st.success(
 
     La campaña con el camión betonera cargado permitió validar la capacidad
     del sistema ESTRES para registrar la respuesta estructural del vehículo
-    durante condiciones reales de operación y diferenciar distintas
-    condiciones de solicitación.
+    durante condiciones reales de operación y diferenciar distintos niveles
+    y tipos de demanda estructural.
 
-    Los resultados muestran que la mayor solicitación sostenida se produjo
-    durante la descarga del cemento, mientras que durante el desplazamiento
-    se identificaron eventos transitorios asociados a la dinámica del vehículo.
+    Los resultados muestran que la mayor **demanda estructural sostenida**
+    se produjo durante la descarga del cemento, mientras que durante el
+    desplazamiento se identificaron eventos transitorios asociados a la
+    dinámica del vehículo.
 
     La medición simultánea de **Stress, Stress Range, Stress Rate y GPS**
-    permite caracterizar tanto la magnitud como el instante y ubicación de
-    los eventos estructurales, proporcionando una base experimental para el
-    análisis posterior de fatiga y daño acumulado.
+    permite caracterizar la magnitud, duración, instante y ubicación de los
+    eventos estructurales, proporcionando una base experimental para el
+    análisis de fatiga y daño acumulado.
     """
 )
