@@ -333,11 +333,7 @@ fig_route.add_trace(
 fig_route.update_layout(
     map=dict(
         style="carto-positron",
-        center=dict(
-            lat=route["latitude"].mean(),
-            lon=route["longitude"].mean(),
-        ),
-        zoom=10,
+        bounds="locations",
     ),
     height=500,
     margin=dict(l=0, r=0, t=0, b=0),
@@ -350,6 +346,7 @@ st.plotly_chart(
     config={
         "displayModeBar": True,
         "scrollZoom": True,
+        "doubleClick": "reset",
     },
 )
 
