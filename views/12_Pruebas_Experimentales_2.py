@@ -333,7 +333,11 @@ fig_route.add_trace(
 fig_route.update_layout(
     map=dict(
         style="carto-positron",
-        bounds="locations",
+        center=dict(
+            lat=route["latitude"].mean(),
+            lon=route["longitude"].mean(),
+        ),
+        zoom=10,
     ),
     height=500,
     margin=dict(l=0, r=0, t=0, b=0),
@@ -349,7 +353,6 @@ st.plotly_chart(
         "doubleClick": "reset",
     },
 )
-
 st.caption(
     "Posiciones GPS registradas durante la ventana en que existen datos "
     "simultáneos de estrés y posición."
