@@ -193,7 +193,7 @@ m1.metric(
 )
 
 m2.metric(
-    "Intervalo común",
+    "Intervalo de la medición",
     f"{elapsed_min:.0f} min"
 )
 
