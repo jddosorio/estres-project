@@ -498,6 +498,26 @@ En conjunto, la prueba permitió distinguir dos tipos principales de demanda:
   del vehículo durante el recorrido;
 - **demanda estructural sostenida**, observada principalmente durante la
   operación de descarga del cemento.
+
+### Fatiga estructural
+
+Durante la ventana analizada, el sistema ESTRES registró un **Micro Damage
+acumulado de aproximadamente 1,7 µD**. Considerando que 1 µD representa una
+millonésima de la fracción de daño acumulado, este resultado corresponde a una
+fracción de daño por fatiga del orden de **1,7 × 10⁻⁶** para la operación
+registrada.
+
+Si se considera, como primera aproximación, una acumulación lineal de daño
+según la regla de Miner y se supone la repetición de condiciones de operación
+equivalentes a las de esta campaña, el daño medido proyectaría una vida del
+orden de **500.000 a 600.000 recorridos equivalentes** antes de alcanzar una
+fracción de daño acumulado igual a 1.
+
+Esta estimación no debe interpretarse todavía como una predicción de la vida
+útil real del vehículo, sino como una **proyección experimental basada en el
+daño medido durante esta campaña**. La estimación podrá refinarse mediante
+campañas adicionales que permitan caracterizar la variabilidad de las cargas,
+las condiciones de operación y la repetibilidad del daño acumulado.
 """
 )
 
