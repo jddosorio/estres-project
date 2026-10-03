@@ -186,11 +186,31 @@ distance_km = steps.sum() / 1000.0
 elapsed_min = (data["Timestamp"].max() - data["Timestamp"].min()).total_seconds() / 60.0
 
 m1, m2, m3, m4, m5 = st.columns(5)
-m1.metric("Muestras correlacionadas", f"{len(data):,}".replace(",", "."))
-m2.metric("Intervalo común", f"{elapsed_min:.1f} min")
-m3.metric("Recorrido GPS", f"{distance_km:.1f} km")
-m4.metric("Stress máximo", f"{data['Stress'].max():.2f} MPa")
-m5.metric("Stress Range máximo", f"{data['Stress Range'].max():.2f} MPa")
+
+m1.metric(
+    "Muestras correlacionadas",
+    str(len(data))
+)
+
+m2.metric(
+    "Intervalo común",
+    f"{elapsed_min:.0f} min"
+)
+
+m3.metric(
+    "Recorrido GPS",
+    f"{distance_km:.0f} km"
+)
+
+m4.metric(
+    "Stress máximo",
+    f"{data['Stress'].max():.0f} MPa"
+)
+
+m5.metric(
+    "Stress Range máximo",
+    f"{data['Stress Range'].max():.0f} MPa"
+)
 
 st.caption(
     f"Ventana correlacionada: {data['Timestamp'].min():%H:%M:%S} – "
