@@ -6,7 +6,7 @@ import streamlit as st
 # -----------------------------------------------------------------------------
 
 st.set_page_config(
-    page_title="Resultados TRL-6 | ESTRES",
+    page_title="Resultados TRL-7 | ESTRES",
     page_icon="✅",
     layout="wide",
 )
@@ -16,7 +16,7 @@ st.set_page_config(
 # Título
 # -----------------------------------------------------------------------------
 
-st.title("✅ Resultados y Validación TRL-6")
+st.title("✅ Resultados y Validación TRL-7")
 
 st.caption(
     "Proyecto CORFO 25IRA2-308620 — "
@@ -81,7 +81,7 @@ with col2:
 with col3:
     st.markdown(
         """
-### TRL-6
+### TRL-7
 
 **Resultado del proyecto**
 
@@ -104,6 +104,12 @@ La solución integra:
 
 La integración fue sometida a condiciones dinámicas utilizando
 un camión betonera como plataforma experimental.
+
+La validación incluyó la cadena tecnológica extremo a extremo y el
+comportamiento del sistema frente a interrupciones de comunicación,
+incluyendo almacenamiento local y recuperación automática mediante
+Store & Forward. Estas evidencias permiten situar el prototipo
+integrado en **TRL-7**.
 """
     )
 
@@ -183,6 +189,8 @@ siendo adquiridos y son almacenados temporalmente en el sistema Edge.
 
 Una vez recuperada la conectividad, la información pendiente es
 retransmitida hacia el historiador remoto.
+
+Esta funcionalidad fue además validada mediante una **interrupción controlada del enlace hacia el Historian**. Durante la pérdida de comunicación, el Edge mantuvo la adquisición y almacenó los datos localmente. Al restablecer el enlace, Store & Forward recuperó automáticamente la comunicación y transfirió al Historian los datos almacenados, sin pérdida observable de información.
 
 Esta funcionalidad es especialmente relevante para aplicaciones
 mineras en la Región de Antofagasta, donde los activos móviles pueden
@@ -290,8 +298,8 @@ st.success(
     """
 La ejecución del proyecto CORFO Innova Región permitió evolucionar
 desde una solución integrada a nivel de laboratorio (TRL-4) hacia
-un prototipo funcional validado experimentalmente sobre un vehículo
-pesado de escala real.
+un **prototipo de sistema demostrado en condiciones operacionales
+representativas (TRL-7)** sobre un vehículo pesado de escala real.
 
 La campaña permitió demostrar conjuntamente la adquisición de
 deformaciones estructurales, procesamiento de variables asociadas a
@@ -301,7 +309,7 @@ remota y visualización de la información.
 
 En función de estas actividades y evidencias experimentales, el
 proyecto presenta resultados consistentes con el objetivo de
-maduración tecnológica hasta **TRL-6**.
+maduración tecnológica hasta **TRL-7**, sustentada por la demostración del sistema integrado en condiciones operacionales representativas y por la validación de la continuidad de datos mediante Store & Forward.
 """
 )
 
@@ -370,13 +378,14 @@ st.subheader("Próxima etapa tecnológica")
 
 st.info(
     """
-El siguiente paso en la maduración de la tecnología corresponde a
-realizar una demostración del sistema ESTRES instalado sobre un
-equipo minero CAEX operando en una faena minera.
+Alcanzado el nivel **TRL-7**, la siguiente etapa corresponde a
+realizar pilotos industriales prolongados del sistema ESTRES sobre
+equipos mineros CAEX operando en faena.
 
-Esta etapa permitirá evaluar la solución bajo las condiciones reales
-de operación, carga, vibración, desplazamiento y comunicaciones
-propias del ambiente minero, avanzando hacia una validación de mayor
-madurez tecnológica.
+Estas pruebas permitirán acumular evidencia de desempeño, confiabilidad
+y mantenibilidad bajo condiciones reales de operación. En paralelo,
+la tecnología se encuentra en condiciones de iniciar su **introducción
+comercial mediante pilotos industriales**, avanzando posteriormente
+hacia su consolidación como solución industrial de mayor madurez.
 """
 )

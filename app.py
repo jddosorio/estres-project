@@ -242,7 +242,7 @@ with st.sidebar:
 
     st.page_link(
         results_page,
-        label="Resultados TRL-6",
+        label="Resultados y validación TRL-7",
         icon="✅",
     )
 
