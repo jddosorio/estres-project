@@ -111,13 +111,21 @@ La solución integra:
 - visualización y acceso remoto.
 
 La integración fue sometida a condiciones dinámicas utilizando
-un camión betonera como plataforma experimental.
+un camión betonera como plataforma experimental, representando una
+condición operacional real para un vehículo pesado.
 
 La validación incluyó la cadena tecnológica extremo a extremo y el
 comportamiento del sistema frente a interrupciones de comunicación,
 incluyendo almacenamiento local y recuperación automática mediante
-Store & Forward. Estas evidencias permiten situar el prototipo
-integrado en **TRL-7**.
+Store & Forward.
+
+El nivel **TRL-7** corresponde a la madurez alcanzada por el sistema
+ESTRES integrado y **no depende de su validación en una faena minera
+específica**. Cada operación minera presenta condiciones particulares
+de cobertura y comunicaciones que deben verificarse durante su
+implementación. Estas evidencias permiten situar el prototipo integrado
+en **TRL-7: sistema demostrado en condiciones operacionales
+representativas**.
 """
     )
 
@@ -316,8 +324,17 @@ GPS, almacenamiento Edge, mecanismo Store & Forward, historización
 remota y visualización de la información.
 
 En función de estas actividades y evidencias experimentales, el
-proyecto presenta resultados consistentes con el objetivo de
-maduración tecnológica hasta **TRL-7**, sustentada por la demostración del sistema integrado en condiciones operacionales representativas y por la validación de la continuidad de datos mediante Store & Forward.
+proyecto presenta resultados consistentes con una maduración
+tecnológica hasta **TRL-7**, sustentada por la demostración del sistema
+integrado en condiciones operacionales representativas y por la
+validación de la continuidad de datos mediante Store & Forward.
+
+La validación en una faena minera específica no constituye una
+condición necesaria para establecer este nivel de madurez. Las
+diferencias de cobertura y comunicaciones entre faenas corresponden
+a condiciones particulares de despliegue. La arquitectura ESTRES
+incorpora Store & Forward precisamente para mantener la continuidad
+de los datos frente a interrupciones temporales del enlace.
 """
 )
 
@@ -392,9 +409,16 @@ Alcanzado el nivel **TRL-7**, la siguiente etapa del sistema ESTRES
 corresponde al **inicio de su despliegue comercial**, avanzando hacia
 TRL-8.
 
-Esta etapa considera implementar la solución sobre equipos mineros
-en operación, consolidando su desempeño, confiabilidad, mantenibilidad
-y continuidad operacional bajo condiciones reales de faena.
+Esta etapa considera iniciar implementaciones comerciales sobre
+equipos mineros, adaptando la arquitectura a las condiciones
+particulares de cada faena, especialmente disponibilidad, cobertura
+y calidad de las comunicaciones.
+
+Estas condiciones de conectividad constituyen variables de despliegue
+que pueden variar significativamente entre operaciones mineras. La
+capacidad Store & Forward permite desacoplar la continuidad de la
+adquisición de datos de la disponibilidad permanente del enlace de
+comunicaciones.
 
 El despliegue comercial considera dos modalidades:
 
