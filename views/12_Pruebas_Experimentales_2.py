@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
+IMAGE_TREND = Path("images/canaryTrendBetonera-2.png")
 
 # -----------------------------------------------------------------------------
 # Configuración
@@ -513,6 +514,56 @@ otras condiciones operacionales repetitivas.
 """
 )
 
+# -----------------------------------------------------------------------------
+# Evidencia Canary
+# -----------------------------------------------------------------------------
+
+st.subheader("Registro de la respuesta estructural en el Historiador Canary")
+
+if IMAGE_TREND.exists():
+
+    st.image(
+        str(IMAGE_TREND),
+        caption=(
+            "Registro de la respuesta estructural del chasis durante "
+            "el desplazamiento y descarga de concreto del camión betonera."
+        ),
+        use_container_width=True,
+    )
+
+st.markdown(
+    """
+La tendencia registrada en el **Historiador Canary** permite observar
+la respuesta estructural del chasis durante las distintas condiciones
+de operación del camión betonera.
+
+Durante el tramo correspondiente al **desplazamiento del camión** se
+observan variaciones continuas de **Stress** y **Stress Rate**. Estas
+variaciones están asociadas a los cambios de carga dinámica producidos
+durante la trayectoria, incluyendo **frenadas, aceleraciones y cambios
+de dirección del vehículo**.
+
+El algoritmo de procesamiento identifica estas variaciones y genera
+las variables **Stress Range** y **Stress Rate Range**, que permiten
+caracterizar la amplitud de los ciclos de carga experimentados por
+la estructura.
+
+En el **último tramo del registro**, el camión se encuentra **detenido
+durante la descarga del concreto**. En esta condición disminuyen
+significativamente las variaciones dinámicas de esfuerzo, lo que se
+refleja especialmente en la reducción de **Stress Rate**, **Stress Range**
+y **Stress Rate Range**.
+
+A partir de los ciclos de esfuerzo identificados se calcula además la
+variable **Micro Damage**, utilizada para estimar la contribución de
+cada ciclo al **daño acumulativo por fatiga** de la estructura.
+
+Este registro demuestra la capacidad del sistema para distinguir
+diferentes condiciones operacionales del vehículo a partir de su
+respuesta estructural y almacenar esta información de forma continua
+para su posterior análisis.
+"""
+)
 
 # -----------------------------------------------------------------------------
 # Resultado de la campaña

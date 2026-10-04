@@ -7,3 +7,4 @@ __pycache__/
 .env
 .vscode/
 sample_data/digital_twin_6m/
+fatigue-SN.png
