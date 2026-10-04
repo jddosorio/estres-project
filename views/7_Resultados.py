@@ -67,6 +67,7 @@ temporales de conectividad.
 
 En consecuencia, el punto de partida del proyecto se estableció en
 **TRL-4 para el sistema ESTRES integrado**.
+"""
     )
 
 with col2:
