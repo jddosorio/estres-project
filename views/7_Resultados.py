@@ -38,11 +38,12 @@ with col1:
         """
 ### TRL-4
 
-**Estado inicial del proyecto**
+**Estado inicial del sistema ESTRES**
 
-Antes de la ejecución del proyecto CORFO Innova Región,
-los principales componentes utilizados en la solución correspondían
-a tecnologías industriales maduras y comercialmente disponibles.
+Al inicio del proyecto, los componentes principales utilizados en la
+solución correspondían a **tecnologías industriales maduras,
+comercialmente disponibles y con niveles de madurez equivalentes a
+TRL-9 en sus respectivas aplicaciones**.
 
 Entre ellos:
 
@@ -53,13 +54,19 @@ Entre ellos:
 - tecnologías Ethernet / PROFINET;
 - OPC UA.
 
-Sin embargo, la **solución ESTRES como sistema integrado** se
-encontraba en un nivel de madurez **TRL-4**.
+Por lo tanto, el nivel **TRL-4 no correspondía a la madurez individual
+de estos componentes**, sino al nivel de madurez de **ESTRES como
+sistema integrado**.
 
-La integración completa de estos elementos, particularmente para
-su utilización sobre un activo móvil y con comunicaciones celulares,
-aún debía ser desarrollada y validada experimentalmente.
-"""
+Al inicio del proyecto, la interconexión de estos elementos ya había
+sido desarrollada a nivel de prototipo, pero aún faltaba demostrar
+experimentalmente su operación conjunta sobre un activo móvil,
+incluyendo procesamiento continuo, comunicaciones celulares,
+almacenamiento remoto y recuperación de datos frente a pérdidas
+temporales de conectividad.
+
+En consecuencia, el punto de partida del proyecto se estableció en
+**TRL-4 para el sistema ESTRES integrado**.
     )
 
 with col2:
