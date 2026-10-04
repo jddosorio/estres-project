@@ -382,18 +382,34 @@ st.dataframe(
 # Próxima etapa
 # -----------------------------------------------------------------------------
 
-st.subheader("Próxima etapa tecnológica")
+st.subheader("Próxima etapa tecnológica — TRL-8")
 
 st.info(
     """
-Alcanzado el nivel **TRL-7**, la siguiente etapa corresponde a
-realizar pilotos industriales prolongados del sistema ESTRES sobre
-equipos mineros CAEX operando en faena.
+### TRL-8 — Inicio del Despliegue Comercial
 
-Estas pruebas permitirán acumular evidencia de desempeño, confiabilidad
-y mantenibilidad bajo condiciones reales de operación. En paralelo,
-la tecnología se encuentra en condiciones de iniciar su **introducción
-comercial mediante pilotos industriales**, avanzando posteriormente
-hacia su consolidación como solución industrial de mayor madurez.
+Alcanzado el nivel **TRL-7**, la siguiente etapa del sistema ESTRES
+corresponde al **inicio de su despliegue comercial**, avanzando hacia
+TRL-8.
+
+Esta etapa considera implementar la solución sobre equipos mineros
+en operación, consolidando su desempeño, confiabilidad, mantenibilidad
+y continuidad operacional bajo condiciones reales de faena.
+
+El despliegue comercial considera dos modalidades:
+
+- **On-Premise:** suministro e instalación de la solución completa
+  en la infraestructura del cliente, incluyendo sensores, Edge
+  Computing, comunicaciones, Historian y herramientas de visualización.
+
+- **Monitoring as a Service:** PULSO Tech instala y opera la
+  infraestructura de monitoreo, entregando al cliente acceso a
+  variables estructurales, tendencias, indicadores de fatiga y
+  condición de sus activos mediante un servicio recurrente.
+
+El objetivo de esta etapa es transformar el prototipo operacional
+demostrado en **TRL-7** en una solución industrial reproducible,
+calificada y comercialmente desplegable, iniciando su incorporación
+en operaciones mineras.
 """
 )
